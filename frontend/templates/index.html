@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Senhas</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+    <main class="auth-container">
+
+        <div class="auth-box">
+
+            <h1>Gerenciador de Senhas</h1>
+
+            {% with mensagens = get_flashed_messages(with_categories=true) %}
+                {% if mensagens %}
+                    {% for categoria, mensagem in mensagens %}
+                        <div class="mensagem {{ categoria }}">
+                            {{ mensagem }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <h2>Login</h2>
+
+            <form method="POST" action="/login">
+
+                <div class="form-group">
+                    <label for="login">
+                        Login
+                    </label>
+
+                    <input
+                        type="text"
+                        id="login"
+                        name="login"
+                        placeholder="Digite seu login"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="senha-login">
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="senha-login"
+                        name="senha"
+                        placeholder="Digite sua senha"
+                        required
+                    >
+                </div>
+
+                <button type="submit">
+                    Entrar
+                </button>
+
+            </form>
+
+            <div class="auth-separator">
+                ou
+            </div>
+
+            <h2>Cadastro</h2>
+
+            <form method="POST" action="/cadastro">
+
+                <div class="form-group">
+                    <label for="login-cadastro">
+                        Login
+                    </label>
+
+                    <input
+                        type="text"
+                        id="login-cadastro"
+                        name="login"
+                        placeholder="Crie seu login"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="senha-cadastro">
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="senha-cadastro"
+                        name="senha"
+                        placeholder="Crie sua senha"
+                        required
+                    >
+                </div>
+
+                <button type="submit">
+                    Criar conta
+                </button>
+
+            </form>
+
+            <p class="auth-info">
+                Sua senha principal será armazenada de forma segura.
+            </p>
+
+        </div>
+
+    </main>
+
+</body>
+</html>
